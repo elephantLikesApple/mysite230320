@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>질문 리스트</title>
 </head>
 <body>
 <table>
@@ -14,7 +14,9 @@
     </thead>
     <tbody>
         <tr th:each="question : ${questionList}">
-            <td th:text="${question.subject}"></td>
+            <td>
+                <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+            </td>
             <td th:text="${question.createDate}"></td>
         </tr>
     </tbody>

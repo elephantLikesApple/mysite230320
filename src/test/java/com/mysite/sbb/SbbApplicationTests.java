@@ -49,7 +49,8 @@ class SbbApplicationTests {
 
 		Answer a = new Answer();
 		a.setContent("네 자동으로 생성됩니다.");
-		a.setQuestion(q2);
+
+		q2.addAnswer(a);
 		a.setCreateDate(LocalDateTime.now());
 		this.answerRepository.save(a);
 	}

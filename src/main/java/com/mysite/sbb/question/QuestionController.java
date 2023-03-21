@@ -1,5 +1,6 @@
 package com.mysite.sbb.question;
 
+import com.mysite.sbb.answer.AnswerForm;
 import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 import lombok.AllArgsConstructor;
@@ -24,13 +25,13 @@ public class QuestionController {
     }
 
     @GetMapping("/detail/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id){
+    public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm) {
         model.addAttribute("question", this.questionService.getQuestion(id));
         return "question_detail";
     }
 
     @GetMapping("/create")
-    public String questionCreate(QuestionForm questionForm) {
+    public String questionCreate() {
         return "question_form";
     }
 

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
@@ -143,7 +144,8 @@ class SbbApplicationTests {
 		assertEquals(2, a.getQuestion().getId());
 	}
 
-	@Transactional
+	@Transactional // 트랜젝션으로 테스트하는 경우, 테스트를 수행한 뒤에 기본적으로 롤백하여 테스트 이전으로 되돌린다.
+	@Rollback(value = false) // 테스트 완료후 롤백되지 않도록 한다.
 	@Test
 	void testJpa011QuestionFromAnswer() {
 		Optional<Question> oq = this.questionRepository.findById(2);
